@@ -6,13 +6,11 @@ pipeline {
                 script {
                     def mfiles = bat(script: 'git diff %GIT_PREVIOUS_COMMIT% %GIT_COMMIT% --name-only --diff-filter=d', returnStdout: true).trim()
                     echo mfiles
-                    if [ ! -z "$mfiles" ];
-                        then
-                         echo "$mfiles" | while IFS= read -r line ; do echo $line; cp -rf --parents "$line" Target; done
-                     else
-                        echo "No modified files";
-                    fi
-
+                    if(mfiles) {
+                        mfiles.split('\n').each { file ->
+                            echo file
+                            bat "xcopy /f /e /i /y \"${file}\" Target"
+                        }
                     } else {
                         echo "No modified files"
                     }
