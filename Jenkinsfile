@@ -9,7 +9,7 @@ pipeline {
                     if(mfiles) {
                         mfiles.split('\n').each { file ->
                             echo file
-                            bat "xcopy /f /e /i /y \"${file}\"C:\ProgramData\Jenkins\.jenkins\workspace\Java App\target"
+                            bat "xcopy /f /e /i /y \"${file}\"C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\Java App\\target"
                         }
                     } else {
                         echo "No modified files"
