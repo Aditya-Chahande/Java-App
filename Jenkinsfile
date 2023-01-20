@@ -8,7 +8,6 @@ pipeline {
             steps {
                 script {
                     println(mfiles)
-                    xcopy ${mfiles} """Target\""" /y
                 }
             }
         }
