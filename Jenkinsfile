@@ -6,10 +6,9 @@ pipeline {
                 script {
                     def mfiles = bat(script: 'git diff %GIT_PREVIOUS_COMMIT% %GIT_COMMIT% --name-only --diff-filter=d', returnStdout: true).trim()
                     println(mfiles)
-                    for(mfiles != null) {
-                       echo mfiles | while IFS= read -r line
-                       do echo line
-                       cp -rf --parents line Target;
+                    echo mfiles | while IFS= read -r line
+                    do echo line
+                    cp -rf --parents line Target;
                 }
             }
         }
