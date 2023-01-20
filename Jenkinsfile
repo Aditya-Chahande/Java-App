@@ -8,11 +8,15 @@ pipeline {
                     echo mfiles
                     echo mfiles
                     echo mfiles
-                    if(mfiles) {
-                        mfiles.split('\n').each { file ->
-                            echo file
-                            bat "xcopy /f /e /i /y \"${file}\" Target"
-                        }
+                    |
+            if [ ! -z "$mfiles" ];
+            then
+            echo "$mfiles" | while IFS= read -r line ; do echo $line; cp -rf --parents "$line" Target; done
+               #cp -rv --parents "$mfiles" Target;
+            else
+                echo "No modified files";
+            fi
+
                     } else {
                         echo "No modified files"
                     }
