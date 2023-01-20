@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Git Diff') {
             steps {
-                bat "echo ${mfiles}"
+                bat "echo${env.mfiles}"
             }
         }
     }
