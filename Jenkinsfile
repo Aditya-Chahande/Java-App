@@ -5,7 +5,11 @@ pipeline {
     agent any
     stages {
         stage('Git Diff') {
-            
+            steps {
+                script {
+                    println(mfiles)
+                }
+            }
         }
     }
 }
