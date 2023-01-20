@@ -8,18 +8,14 @@ pipeline {
                     echo mfiles
                     echo mfiles
                     echo mfiles
-                    |
-            if [ ! -z "$mfiles" ];
-            then
-            echo "$mfiles" | while IFS= read -r line ; do echo $line; cp -rf --parents "$line" Target; done
-               #cp -rv --parents "$mfiles" Target;
-            else
-                echo "No modified files";
-            fi
-
-                    } else {
+                    script {
+                    if [ ! -z "$mfiles" ];
+                    then
+                        echo "$mfiles" | while IFS= read -r line ; do echo $line; cp -rf --parents "$line" Target; done
+                    else
                         echo "No modified files"
                     }
+                    
                     def dfiles = bat(script: 'git diff --diff-filter=D --name-only --summary %GIT_PREVIOUS_COMMIT% %GIT_COMMIT% | findstr /r "delete"', returnStdout: true).trim()
                     if(dfiles) {
                         echo dfiles >> "Target\\dfiles.txt"
