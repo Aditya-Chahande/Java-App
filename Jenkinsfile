@@ -9,7 +9,7 @@ pipeline {
                     echo mfiles
                     echo mfiles
                     script {
-                    if [ ! -z "$mfiles" ];
+                    if ( ! -z "$mfiles" );
                     then
                         echo "$mfiles" | while IFS= read -r line ; do echo $line; cp -rf --parents "$line" Target; done
                     else
