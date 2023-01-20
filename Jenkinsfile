@@ -7,6 +7,7 @@ pipeline {
                     def mfiles = bat(script: 'git diff %GIT_PREVIOUS_COMMIT% %GIT_COMMIT% --name-only --diff-filter=d', returnStdout: true).trim()
                     echo mfiles
                     echo mfiles
+                    echo mfiles
                     if(mfiles) {
                         mfiles.split('\n').each { file ->
                             echo file
