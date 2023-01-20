@@ -1,12 +1,13 @@
 pipeline {
     agent any
     stages {
-        stage('Detect Changes') {
+        stage('Git Diff') {
             steps {
-                    def mfiles = bat(script: 'git diff %GIT_PREVIOUS_COMMIT% %GIT_COMMIT% --name-only --diff-filter=d', returnStdout: true).trim()
-                    echo mfiles
-                   
+                script {
+                    def mfiles = sh(script: 'git diff ${env.GIT_PREVIOUS_COMMIT} ${env.GIT_COMMIT} --name-only --diff-filter=d', returnStdout: true).trim()
+                    println(mfiles)
                 }
             }
         }
     }
+}
