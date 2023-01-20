@@ -4,7 +4,7 @@ pipeline {
         stage('Git Diff') {
             steps {
                 script {
-                    def mfiles = sh(script: 'git diff ${env.GIT_PREVIOUS_COMMIT} ${env.GIT_COMMIT} --name-only --diff-filter=d', returnStdout: true).trim()
+                    def mfiles = bat(script: 'git diff ${env.GIT_PREVIOUS_COMMIT} ${env.GIT_COMMIT} --name-only --diff-filter=d', returnStdout: true).trim()
                     println(mfiles)
                 }
             }
