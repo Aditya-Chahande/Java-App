@@ -6,9 +6,7 @@ pipeline {
     stages {
         stage('Git Diff') {
             steps {
-                script {
-                    echo ${mfiles}
-                }
+                echo ${mfiles}
             }
         }
     }
