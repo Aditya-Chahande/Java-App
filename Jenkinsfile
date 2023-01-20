@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Git Diff') {
             steps {
-                echo "${mfiles}"
+                bat''"echo ${mfiles}"''
             }
         }
     }
