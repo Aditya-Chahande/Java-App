@@ -7,7 +7,7 @@ pipeline {
         stage('Git Diff') {
             steps {
                 script {
-                    println(mfiles)
+                    echo ${mfiles}
                 }
             }
         }
